@@ -8,5 +8,4 @@ public class SlowTank extends BaseTank {
 		turretRotation = 1;
 		fireRate = 3;
 	}
-
 }
