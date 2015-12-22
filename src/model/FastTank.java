@@ -1,6 +1,6 @@
 package model;
 
-public class FastTank extends BaseTank {
+public class FastTank extends Tank {
 	
 	public FastTank() {
 		movementSpeed = 10;

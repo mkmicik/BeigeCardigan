@@ -1,6 +1,6 @@
 package messages;
 
-public class error {
+public class ResponseError {
 
 	private static final String comm_type = "ErrorResp";
     

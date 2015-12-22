@@ -1,6 +1,6 @@
 package model;
 
-public abstract class BaseTank {
+public abstract class Tank {
 
 	protected String id;
 	

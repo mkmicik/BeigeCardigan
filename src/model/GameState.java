@@ -12,8 +12,8 @@ public class GameState {
 	private Map map;
 	private double time;
 	
-	private BaseTank slowTank;
-	private BaseTank fastTank;
+	private Tank slowTank;
+	private Tank fastTank;
 	
 	public static GameState getInstance() {
 		if (_instance == null) {
