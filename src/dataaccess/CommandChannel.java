@@ -26,31 +26,6 @@ public class CommandChannel {
 		
 		System.out.println(json_cmd);
 		
-		ZContext ctx = new ZContext();
-		Socket client = ctx.createSocket(ZMQ.DEALER);
-		
-		//  Set random identity to make tracing easier
-		String identity = String.format("%04X-%04X", rand.nextInt(), rand.nextInt());
-		client.setIdentity(identity.getBytes());
-		client.connect("tcp://localhost:5570");
-		
-		PollItem[] items = new PollItem[] { new PollItem(client, Poller.POLLIN) };
-		
-		int requestNbr = 0;
-		while (!Thread.currentThread().isInterrupted()) {
-		    //  Tick once per second, pulling in arriving messages
-		for (int centitick = 0; centitick < 100; centitick++) {
-		    ZMQ.poll(items, 10);
-		    if (items[0].isReadable()) {
-		        ZMsg msg = ZMsg.recvMsg(client);
-		        msg.getLast().print(identity);
-		        msg.destroy();
-		    }
-		}
-		client.send(String.format("request #%d", ++requestNbr), 0);
-		}
-		ctx.destroy();
-		
 		
 		
 	}
