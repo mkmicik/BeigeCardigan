@@ -1,6 +1,23 @@
-package dao;
+package dataaccess;
 
-public class CommandManager {
+public class ConnectionManager {
+	
+	private static ConnectionManager _instance;
+	
+	private static CommandChannel cc;
+	private static StateChannel sc;
+	
+	public ConnectionManager getInstance() {
+		if (_instance == null) {
+			_instance = new ConnectionManager();
+		}
+		return _instance;
+	}
+	
+	public ConnectionManager() {
+		cc = new CommandChannel();
+		sc = new StateChannel();
+	}
 
 	/*
 	1. Create connections to the Central Game System (using the publish/subscribe envelope).

@@ -1,5 +1,7 @@
 package fsm;
 
+import dataaccess.ConnectionManager;
+
 /**
  * The finite state machine that controls the game. Uses data
  * from the GameState object to make decisions and control the
@@ -8,10 +10,10 @@ package fsm;
  *
  */
 public class Charles {
-
+	
 	public static void main(String[] args) {
 		
-		
+		ConnectionManager cm = new ConnectionManager();
 		
 		
 	}
