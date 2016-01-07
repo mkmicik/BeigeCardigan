@@ -1,8 +1,25 @@
 package dataaccess;
 
-public class StateChannel {
+import org.zeromq.ZMQ;
 
-	private static final String host = "127.0.0.1";
-	private static final int port = 5557;
+public class StateChannel {
 	
+	private ZMQ.Context context;
+	
+	private ZMQ.Socket socket;
+	private String socketAddress;
+	
+	private static final int port = 5556;
+	//private static String UUID;
+
+	public StateChannel(String ipAddress, String matchToken) {
+		
+		this.socketAddress = "tcp://" + ipAddress + ":" + port;
+		
+		context = ZMQ.context(1);
+		socket = context.socket(ZMQ.PUB);
+		
+		socket.connect(socketAddress);
+		socket.subscribe(matchToken.getBytes());
+	}
 }

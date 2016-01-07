@@ -12,22 +12,34 @@ import messages.MatchConnectCommand;
 import json.Converter;
 import constants.Constants;
 
-//import com.google.gson.Gson;
-
 public class CommandChannel {
 	
-	private static final String host = "127.0.0.1";
+	private ZMQ.Context context;
+	
+	private ZMQ.Socket socket;
+	private String socketAddress;
+	private String matchToken;
+	
 	private static final int port = 5557;
-	private static String UUID;
+	//private static String UUID;
 
-	public CommandChannel() {
-		MatchConnectCommand cmd = new MatchConnectCommand(Constants.match_token, Constants.team_name, Constants.password);
+	public CommandChannel(String ipAddress, String matchToken) {
+		
+		this.matchToken = matchToken;
+		this.socketAddress = "tcp://" + ipAddress + ":" + port;
+		
+		context = ZMQ.context(1);
+		socket = context.socket(ZMQ.REQ);
+		
+		socket.connect(socketAddress);
+
+	}
+	
+	public void connect() {
+		MatchConnectCommand cmd = new MatchConnectCommand(matchToken, Constants.team_name, Constants.password);
 		String json_cmd = Converter.toJSON(cmd);
 		
 		System.out.println(json_cmd);
-		
-		
-		
 	}
 	
 	

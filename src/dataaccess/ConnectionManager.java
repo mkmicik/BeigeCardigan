@@ -1,5 +1,7 @@
 package dataaccess;
 
+import constants.Constants;
+
 public class ConnectionManager {
 	
 	private static ConnectionManager _instance;
@@ -15,8 +17,10 @@ public class ConnectionManager {
 	}
 	
 	public ConnectionManager() {
-		cc = new CommandChannel();
-		sc = new StateChannel();
+		cc = new CommandChannel(Constants.ipAddress, Constants.match_token);
+		sc = new StateChannel(Constants.ipAddress, Constants.match_token);
+		
+		cc.connect();
 	}
 
 	/*

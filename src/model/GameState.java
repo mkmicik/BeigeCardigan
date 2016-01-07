@@ -21,4 +21,13 @@ public class GameState {
 		}
 		return _instance;
 	}
+	
+	public Tank getSlowTank() {
+		return slowTank;
+	}
+
+	public Tank getFastTank() {
+		return fastTank;
+	}
+
 }
